@@ -1,0 +1,13 @@
+
+- every thing in java goes into a class 
+  src code file (.java) => bytecode(.class)
+  so when you run the app you really run a class
+
+- your programm start with main funcation whatever program is big  it will start running the        
+  main method and run all codes inside it untill is over
+
+- note that while(condition) not like c++ converted auto to boolean you should do what ever you    
+  want with bool conditions ex => while(c==0) || while(a) Error..!!!
+  why ? as intergers and booleans are not compatiable type in java the only type that can work like that is boolean variables => boolean x = 1; while(x){..do something new ..}
+
+-

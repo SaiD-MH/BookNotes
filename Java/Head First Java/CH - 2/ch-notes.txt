@@ -1,0 +1,13 @@
+
+
+=>	The two uses of main:
+		- to test your real class
+		- to launch/start your Java application
+
+=>	the real java application is really nothing just objects talking to each other
+
+		- Talking mean obj's Calling a methodes on another 
+
+
+=> in java nothing in OO World called golbal it say as "static"
+=> At runtime, a Java program is nothing more than objects ‘talking’ to other objects
