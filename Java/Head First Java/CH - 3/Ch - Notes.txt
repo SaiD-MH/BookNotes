@@ -1,0 +1,120 @@
+
+
+say =>
+ 	int x = 2000;	
+        byte w = x;
+
+        why you get error if even the value is small and it will be enough to put in w is 
+        compiler is so stupied to do that ?
+
+        actually , i know and you know it okey , but all compiler care about is that 
+        you are tring to put some thing big into small things and that may causing loose don't expect to compiler to know value of (x) even it's known ahead you eye's in code
+
+
+Note*** Very danger !!!!!!!!!!!!!!!!!!!!!!!!!!!!! what object refrecnce 
+        
+        There is actually no such thing as an object variable.
+        There’s only an object reference variable.
+        An object reference variable holds bits that represent a 
+        way to access an object.
+        It doesn’t hold the object itself, but it holds something 
+        like a pointer. Or an address. Except, in Java we don’t 
+        really know what is inside a reference variable. We do 
+        know that whatever it is, it represents one and only one 
+        object. And the JVM knows how to use the reference to 
+        get to the object.
+
+        want to sure ?
+        Player p = new Player();
+        System.out.println(p); => Player@3feba861 => 0011 1111 1110 1011 1010 1000 0110 0001
+
+
+
+=> Always know that object live in one place just one place 'Garbage Collectable heap'
+=> primive dataType carry bits that represent the actual values x = 010101 "Actuall value that x hold"
+=> Object Ref variables carry bits that represent way to get that object
+
+                     ....1...... .3. ....2......
+what happen when  => [Dog mydog] [=] [new Dog()];   ? 
+
+        1 -  tells the JVM to allocate aspace for ref variable and named it mydog this ref var is forver 
+             is type dog remote ctrl to this object not for cat ..lol just this object
+             - Create remote control-
+
+        2 - tells the JVM to alocate a space in "!!!....heap....!!!" for new dog object
+            - Create Dog Object-
+
+        3 - assign the new Dog obj to ref variable in other word programs the remote control
+            make remote ctrl has acess to objs
+
+=> what mean to ref variable / object not to refere to anything , what mean to be null ? 
+        
+        Oh, null is a value. I’m still a remote control, but it’s like you brought 
+        home a new universal remote control and you don’t have a TV. I’m not programmed to 
+        control anything. They can press my buttons all day long, but nothing good happens. I 
+        just feel so... useless. A waste of bits. Granted, not that many bits, but still. And that’s not 
+        the worst part. If I am the only reference to a particular object, and then I’m set to null 
+        (deprogrammed), it means that now nobody can get to that object I had been referring to
+
+        Player p = new Player();    
+        p = null;
+        System.out.println(p);
+
+        [useless ]
+
+=> Note Book b = new Book(); 
+        
+        in heap it's not named b it's a book object but the ref variable name b
+
+
+
+Again imporant notes about null => obj = null; !!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+        In Java, when you assign null to a reference variable, such as b = null;, it means that the variable is no longer referencing any object in memory. The object that was previously referenced by b is no longer accessible through that variable.
+
+        Assigning null to a reference variable does not immediately delete or destroy the object itself. It simply means that the reference variable no longer points to that object. However, if there are no other references to the object, it becomes eligible for garbage collection, which means that the Java runtime system can reclaim the memory occupied by the object at some point in the future.
+        Once you assign null to b, you cannot directly access the object using that variable anymore. However, if there are other references to the same object, you can still access it through those references until they are also set to null or go out of scope. Here's an example to illustrate this:
+        Book b = new Book();  // Creates a new Book object and assigns its reference to 'b'
+        b = null;             // 'b' no longer references the Book object
+        // At this point, you cannot access the Book object using 'b'
+        // However, if there are other references to the same Book object, you can still access it through them
+        In summary, assigning null to a reference variable detaches it from the object it was previously referencing, making the object potentially eligible for garbage collection.
+
+        the JVM after that after will when he found the useless object no use of it it can delete it
+
+
+----------------------------------------------------------------------------------------------------------
+all above things about object it's general rule for any ref variable
+----------------------------------------------------------------------------------------------------------
+=> the array is an ref variable 
+   that mean no matter values that array elements hold the arr it self is an object / ref
+
+
+
+      array it self it's obj element inside it it's variable that mean
+
+                            ------- Primitve 8 type int , long , boolean .... etc
+                           |
+        array elements ----|
+                           |
+                           -------- Referance objects 'Remote control'
+
+
+     - int [] arr each element hold value of type int
+     - Dog [] arr each element hold a Dog obj ? X noooooo
+       it's hold ref 'remote ctrl' to Dog obj
+
+!!!!!!!!!! very Danger      =>
+                
+                   Dogs[] Pets ;
+                   Pets = new Dogs[7];
+
+                   we have 7 ref but something is missing ? 
+                   objects / Dogs them selfs 
+                   Pets[0]=new Dogs(); 
+                   Pets[1]=new Dogs();
+                   Pets[2]=new Dogs();
+                   .
+                   .
+                   .
+                   Pets[6]=new Dogs();
