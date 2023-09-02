@@ -5,13 +5,23 @@ public class Ch2Code {
 
    
     public static void main(String[] args) {
+       
+        
+        Player p1 = new Player();
+        Player p2 = new Player();
         
         
-        Player p = new Player();
-        System.out.println(p);
+        if(p1==p2)
+            System.out.println("YES 1");
+        else
+            System.out.println("NO 1");
         
-        p = null;
-        System.out.println(p);
+        p1=p2;
+        
+        if(p1==p2)
+            System.out.println("YES 1");
+        else
+            System.out.println("NO 1");
         
     }
     

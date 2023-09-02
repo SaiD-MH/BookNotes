@@ -3,6 +3,11 @@ package ch2.code;
 public class GuessGame {
 
     Player p1, p2, p3;
+    char c;
+    int x;
+    public void get(){
+        System.out.println( c);
+    }
 
     public void startGame() {
 

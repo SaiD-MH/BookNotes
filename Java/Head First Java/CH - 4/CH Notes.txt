@@ -1,0 +1,61 @@
+
+
+
+=> if method return value you might run it and don't recive returned value you may run it to do things 	   inside it ,  i don't say that right but for you
+
+=> Values passed in and out of methods can be implicitly promoted to a larger type or explicitly cast  to a smaller type
+  
+   byte -> int  implicitly promoted 
+   int  -> byte explicitly cast
+
+
+=> Java naming convenation 
+	
+	fist Char of first word will be small and other word all will be Capital 
+
+	ex -----> Var * Methods
+
+		playFifa(); - playFifa = 7
+
+
+=> Encapsualtion 
+	
+   it's about not make you data [ instance variables ] avaiable to everyone and you must protect it 
+   simply make 
+   
+     variable  - Private
+     Methods   - Public
+
+     setter and Getter => Note it's not just make them in function and return or set the value NOOOO , 
+     you may put constrains
+
+
+
+note !!!!!!!
+
+	
+	instance variable ' var inside class' ex =>
+	public Test(){
+		int x;
+	}
+
+	you don't have to give them inial value as it get inial value automatic 
+	you see 
+	int x;  but it's actually
+	int x = 0;  so you can use them direct without setting they values first
+
+	but local var inside method like 
+
+		public Method(){
+
+		int x;
+		int w = x + 5; // error you trying to access variable not initilized  youcn make it  int x = 0;
+		}
+
+
+
+NOTE !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+	== operator of equaliity is just all it care about 
+
+		the pattern of bit's doesn't care about that is premitive or ref
