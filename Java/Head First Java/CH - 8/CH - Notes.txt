@@ -1,0 +1,65 @@
+
+
+=> Abstract Class 
+	
+	Animal a = new Cat();  --> i understand that
+	Animal a = new Dog();  --> i understand that
+	Animal a = new Tiger() --> i understand that
+
+	Animal a = new Animal();  --> what is that ? 
+	not make any sense what that object will look like ?
+	it's not even sense to make an object from it 
+	you can prevent this action from begin done by making this class not instanciated that's mean ?
+	yessssssssss, you can't make object from it 
+	
+	abstract class Canine extends Animal {
+ 		public void roam() { }
+	}
+
+
+=> So note -- When you design a your inheritace class you have to decide
+   which one is abstract and which is concrete
+   [concrete] => class specific enough to make instance from it / to instantiated
+
+  you still can use reference class as referace variable => Canine x = new Cat();
+
+
+  public class MakeCanine {
+ 	public void go() {
+ 		Canine c;   ------- >  This is OK, because you can always assign 
+ 		c = new Dog();---->a subclass object to a superclass reference,even if the superclass is abstract 
+
+ 		c = new Canine();-> class Canine is marked abstract, so the compiler will NOT let you do this.
+ 		c.roam();
+ }
+}
+
+=> An abstract class has virtually* no use, no value, no purpose in life, unless it is extended
+=> With an abstract class, the guys doing the work at runtime are instances of a subclass of your abstract class
+
+
+=> if abstract inherit from abstract it do't have to implement the abstract methods buttttttttt,
+   when first concrete class come to make an inherit it must implments all abstract methods
+
+=> Method  Signature ( name , arguments) & return type
+
+
+=> arrayList apply polymorphism in it's methods 
+	
+	ex>> add() method  add(object ) => since it's object it can make any other type of object as all things in java extend from obj class , so he add it with no problem
+
+=> To DEFINE an interface: To IMPLEMENT an interface:
+	public interface Pet {...}
+
+	public class Dog extends Canine implements Pet {...}
+
+
+
+=>		 Inheritance -> superClass define who you are
+		 Interface   -> Define the role you can play
+
+
+=> 
+	
+	Use an interface when you want to defi ne a role 
+	that other classes can play, regardless of where those classes are in the inheritance tree
