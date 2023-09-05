@@ -1,0 +1,32 @@
+
+ 
+	      ------|
+	Variables	----- Instance variables (class Variable / Fields / Statses) Live in Heap
+				----- Local variables 	 (Methods Variables) Live in Stack
+		  ------|
+
+
+
+=> Remember the three steps of object creation 
+	1 - Create ref var
+	2 - Create Obj
+	3 - assign them
+
+......................................... Constructor ................................................
+
+=> Constructor first thing run when class is created and even done before step 3 above
+   before assign obj that created in heap to ref var 
+
+=> Constructor don't inherited !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+
+=> Constructor Can used to initilize state of you class
+ 	 (state = instance variables = class variable = Fileds) 
+
+=> overloaded constructor look like methods overloading give you multi options to choose from when the 
+  obj at creation process
+
+
+=> Dead object / variable  mean pushed out of stack or heap 
+
+=> inorder to local variable to be persistance so you can access it and play with it 
+   you need the method that contain this variables to be in the top of stack frame
