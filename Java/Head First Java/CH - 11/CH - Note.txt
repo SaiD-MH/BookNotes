@@ -1,0 +1,25 @@
+
+
+throws in funcation declaraion ?
+
+something like ,
+compiler : hey mate this method maybe throw expection at runtime 
+		   confirm here that you know that by handel the problem of the exception
+		   i don't care how you gonna handel this jus tell me that you know that
+
+As you know we care too much about clean code so if we need to make some code excute no matter what happened you can copy & paste same code again and again in two blocks  or you can use finally !
+	
+------------------------> Finally it's code excute no matter what happend <----------------------------
+
+
+If the try block fails (an exception), flow control immediately moves to the catch block. When the catch block completes, the finally block runs. When the finally block completes,the rest of the method continues on. If the try block succeeds (no exception), flow control skips over the catch block and moves to the finally block. When the finally block completes, the rest of the method 
+continues on.If the try or catch block has a return statement, finally will still run! Flow 
+jumps to the finally, then back to the return
+
+
+
+=> JVM make things more easy first match catch for the exception that happen will make it
+   excute
+
+=> Remember it’s not enough to have a catch block... you have to catch the thing being thrown!
+	why ? it's all about polymirphitc things
