@@ -1,0 +1,46 @@
+
+
+=> a static method mean the method "Behavior not dependent on  an instance variable , so no instance / object is required so you can use " just class
+
+
+=> as we say static method don't know anything about class thing
+   even if you make instance (object ) and make it call this static method
+
+=> static variable not live in the object !!!!!!!!!!!
+ what live in object is just copy of it  look like all have copy from value that in class 
+ 	think of it like not live in object it live in class
+
+
+=> Note Name convention of "static Final" variables is ?
+	
+	className_nameOfVar 
+	ex=> Animal_count  ,  Play_m
+
+
+Final LookLike constant
+	
+	should initilazed at one this two places 
+
+		1 - decleration => public static final int x = 5;
+		2 - static block =>   static {
+
+										x = 46464;
+									}
+
+
+
+=> round negitve done for min 
+	if you think about it it's right as u increase your value is less
+	round(-24.8) => -25
+	round(24.8)  =>  25
+
+
+=> General Rule !!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!
+	anything out of ArrayList is just an object
+	compiler can make auto cast when all same type
+
+=> AutoBoxing just mean auto convert primitive to Wrapper objects
+	
+	int - Integer 
+	float - Float
+	double  - Double
