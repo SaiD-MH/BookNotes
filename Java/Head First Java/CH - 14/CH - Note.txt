@@ -1,0 +1,24 @@
+
+
+=> if you gonaa make aclass serializable and inside it ref variables 
+   to be able to serilize this obj you must make class of ref var inside main class be able to
+   be serilizable
+
+   ex=>
+
+   	 	class Play() implements Serilizable{
+
+   	 		private Duck duck = new Duck();
+
+   	 	}
+
+
+   	 	class Duck(){
+
+   	 		.......... Some code .....................
+
+   	 	}
+
+   	 	Result !!!!!!!!!!
+
+   	 		error Not serilizable exception
