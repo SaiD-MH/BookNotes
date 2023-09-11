@@ -1,0 +1,14 @@
+
+
+=> Consider new Thread as just new Calling Stack 
+	
+	as there are another calling stack ? that's mean the person or the part of code that has this
+	calling stack can make some work while main() calling stack is running
+
+
+=> What manage the thead excutaion ????? =>>>>> JVMMMMMM switch between stacks so Fast so that u feel 	
+   like every thing work together
+
+
+ => Runnable  - Methods that will run in the new  calling stack
+
