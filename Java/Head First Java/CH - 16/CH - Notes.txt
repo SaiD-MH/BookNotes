@@ -1,0 +1,43 @@
+
+
+
+=> In generics, “extends” means “extends or implements”
+=>in generics, the keyword “extends” really means “is-a”, and works for BOTH classes and interfaces
+
+
+
+=> so to deal with dublicated you must 
+	override => hashcode() & equal()
+
+
+=> Hashset vs TreeSet
+
+ Hashset | just add elements with no duplicated  if you override hashcode and equal
+ and keep them without order !!!!!!!!!
+
+ Treeset | keep them sorted so you must implements interface Comparable and override compareTo()
+
+ 	@Override
+    public int compareTo(Song o) {
+        return this.title.compareTo(o.getTitle());
+    }
+
+
+hashset => element not sorted and may not as you insert them  no gurantee for anything
+
+
+
+TreeSet sorting =>
+	
+	1 - no parameters for constructor you must  implements interface Comparable and override compareTo()
+	2 - Compartor Class [External Class] and make new instance and send in TreeSet constructor
+
+
+HashMap = >>
+	
+
+       HashMap<String , Integer> map = new HashMap<String , Integer>(); // Must accept two OBJECT 
+       
+       map.put("moahmed",7);   // add by put(,);
+       
+        System.out.println(map.get("a")); // get by get(key);
