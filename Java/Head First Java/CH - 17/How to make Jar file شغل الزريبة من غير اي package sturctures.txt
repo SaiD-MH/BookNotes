@@ -1,0 +1,21 @@
+=> Please makesure form your jdk and jar then continue
+   
+   windows --->
+
+   				java --version
+   				jar  --version
+
+
+
+         		---------------------------| Steps |----------------------------------
+
+
+    1 - put your all .class file one directory say classes 
+    2 - create textfile & named it with manifest.txt and put inside it where main method is 
+    	[ class nama of it] => [file-Content] Main-Class: App
+    3 - [command] jar cvfm  App.jar    mainfest.txt *.class
+    					   "Jar name"  "Included files inside it"
+        [final command] jar cvfm App.jar mainfest.txt *.class
+
+    4 - you can run the jar file using this
+    	[command] java -jar App.jar

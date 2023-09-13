@@ -1,0 +1,20 @@
+
+what gurantuee that packages name to be uniques
+	
+
+
+	com.headfirstjava.projects.Char
+    -----------------
+	prepend it with domain name
+
+	that's important !!!!!!!!!!!!!!!!!!!!!!!!!!!
+	full path named as => Fully qulified name
+
+
+-d flag  Arabic word [ Berrrrrrrrrrrenssss] 
+	not just put .class files into another directory X!
+	it's also put them in package structure that you choose
+
+
+not even that !!!!!!!!!!!!!!!
+	if it don't exist really in file system then he create it and put things inside it correctly
