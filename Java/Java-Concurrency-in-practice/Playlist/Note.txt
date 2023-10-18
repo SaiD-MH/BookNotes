@@ -1,0 +1,10 @@
+
+
+note 
+
+			
+			Visiabiliy problem happen casue of that cpu has it's own registers & Caches so he save local var
+			there to make R & W Faster than dealing with memory that's good but the problem is that when the 
+			the programm is mutithreads say 2 : and they had shared variables
+			if th1 edit varible things gona writin in memory and the other th2 will never know that
+			so we should r & w direct to the memory we can use volitle keyword

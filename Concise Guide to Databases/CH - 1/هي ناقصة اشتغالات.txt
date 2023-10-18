@@ -1,0 +1,16 @@
+[ The warehouse ]
+is not a database because its organisation is different 
+and data is added, retrieved and analysed, but not modified.
+is therefore a write once, read many system which continually grows.
+Processing data like this can yield unexpected patterns 
+مكان بجمع فيه كل الي trans
+وبعمل عليه انلسيز لحد ما ازهق عشان اطلع منه بعملومه تفيد البيزنيس بتاعي 
+
+
+[cloud]... ?
+
+rather than storing
+data on your own server, you stored it somewhere else.
+That ‘somewhere else’ was something you didn’t need to worry about (although many organisations did), 
+you just bought space and time from the cloud provider who provided the resource you
+wanted on a server who’s physical location could be anywhere in the world.
