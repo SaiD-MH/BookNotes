@@ -32,6 +32,11 @@ how to make a folder or directory ?
 	
 	[command] mkdir newfolder just in your place you are
 	[command] mkdir -p Linux/play/backend/learnLinux
+	Linux --- 
+		   play -- 
+ 			  backend --
+ 				      learnLinux
+			
 
 how to move files / Folders ?
 
