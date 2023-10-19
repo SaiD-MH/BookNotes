@@ -1,0 +1,201 @@
+
+[Transaction]
+Basically a transaction is one or more operations that make up a single task.
+Operations fall into one of four categories; Create, Read, Update or Delete (so called CRUDing).
+
+
+[ACID]
+
+Atomicity   => all or nothing aproach
+
+      This means if any part of a transaction fails, the entire transaction is deemed to have
+      failed and the database is returned to the state it was in before the transaction started.
+      This returning to the original state is known as rollback. On the other hand, if the
+      transaction completes successfully the database is permanently updated—a process
+      known as commit.
+      [rollback] database returning to the original state 
+      [commit] if the transaction completes successfully the database is permanently updated—a process
+
+Consistency =>  سليمة  trans مش عايز زرط في الداتا بيز زي ما لقيتها سليمة سبها بعد ال 
+      
+      means data written to a database must be valid according to defined rules                
+      In a relational database this includes constraints which determine the validity of data entere 
+      كدا انت حرامي والداتا بيز  Customer_id مينفعش يبرنس الاقيك مثلا مطلع فاتوره من المكنه مش مكتوب فيها ال 
+      هتف في وشك بأيرور
+
+Isolation   =>   حاجة متخصنيش نهائي الي ليا  SERIAL  تشتغل  PARALLEL بص يصحبي تشتغل 
+                 لو هتشتغل لمؤاخذه علي التوازي الاقي النتيجه بتاعتي صح اكني شغال لواحدي 
+                 sures that transactions being executed in parallel would result in a final state identical 
+                 to that which would be arrived at if the transactions were executed serially.
+                 This is important for on line systems. For example, consider two users simultaneously 
+                 attempting to buy the last seat on an airline flight. Both would initially see that a seat was available,
+                 but only one can buy it. The first to commit to buying by pressing the purchase button 
+                 and having the purchase approved would cause the other users transaction to stop 
+                 and any entered data (like name and address) to be rolled back.
+
+Durability  =>  Transaction DONE الكلام ده يبرنس معناه ان طالما ظهرلي ان ال
+                مليش فيه بقا السيستم ولع وقع حصل مشكله في البرنامج بتاعي الي ليا فيه ان لما الدنيا ترجع
+                 الاقي الكلام مظبوط زي الفل اكن مفيش مشاكل حصلت 
+
+                 is the property by which once a transaction has been committed, it
+                 will stay committed. From the previous example, if our buyer of the last seat on the
+                 aeroplane has finished their transaction, received a success message but the system
+                 crashes for whatever reason before the final update is applied, the user would reasonably 
+                 think their purchase was a success. Details of the transaction would have to
+                 be stored in a non-volatile area to allow them to be processed when the system was
+                 restored
+
+
+
+[Two-Phase Commit]
+
+way of dealing with transactions where the database is held on more than one server - distributed database -
+
+database management system must coordinate the committing or rolling back of
+transactions as a self-contained unit on all database components no matter where
+they are physically located   => الكلام ده معناه اني مليش فيه انا عايز التعديلات تبان اكني شغال علي 
+                                                                                         جهاز واحد بس 
+
+The two phases are 
+
+*  - the request phase -
+    a coordinating process sends a query to commit message
+    to all other processes. The expected response is ‘YES’ otherwise the transaction aborts
+
+
+* the commit phase
+    Coordinating process sends a query to commit message to all other processes.
+    The expected response is ‘YES’ otherwise the transaction aborts
+
+
+
+
+[relational Database]
+
+The basis of a relational system is a series of tables of records each with specific attributes linked by a series of joins.
+These joins are created using foreign keys which are attribute(s) containing the same data as another tables primary key.
+A primary key is a unique identifier of a record in a table. This approach to data storage 
+was very efficient in terms of the disk space used and the speed of access to records
+
+
+
+[Data Warehouse] 
+
+ايه المشكله مع الداتا بيز العاديه ؟
+
+id | F_name | L_name | Gpa | Year
+---------------------------------
+1  | mohmd  | SQL    | 3.2 | 2024
+2  | sayed  | Java   | 2.7 | 1897
+
+ ارجع ليه لان الي موجود معايا هو الداتا الحاليه الصحيحه الي شغال يبها History   بمعني اني معنديش اي  update مشكلتي يبرنس اني كل شويه بعمل  
+ طب ماشي دلوقتي عندي داتا بقالها مثلا بتاع 5 او 6 سنين عايز اتعامل معاها اعمل ايه ؟؟ عايز اخد قرار ليه علاقه بالبيزنيس بتاعي 
+
+    <-  اااااااااااه 
+   commit   لو حد عمل اي حاجه معفنه حتي في الداتا بيز  Warehouse هنا يجي دور ال 
+   شكرا هروح اعنيه عندي عشان اعمل 
+   History
+
+   A problem with an operational database is that individual records within it are continually being updated,
+   therefore it is difficult to do an analysis based on historical
+   data unless you actively store it. The concept behind a data warehouse is that it can
+   store data generated by different systems in the organisation, not just transactions
+   form the database. This data can then be analysed and the results of the analysis
+   used to make decisions and inform the strategic direction of an organisation
+
+
+   A data warehouse is a central repository of data in an organisation storing historical data and being constantly 
+   added to by current transactions. The data can be analysed to produce trend reports.
+   It can also be analysed using data mining techniques for generating strategic information.
+   Unlike data in a relational database, data in a data warehouse is organised in a de-normalised format 
+
+
+[Data mining]
+
+    is a process of extracting information from a data warehouse and transforming it into an understandable structure.
+
+
+    There are a number of steps in the process:
+       
+        • Data cleansing were erroneous and duplicate data is removed. It is not uncommon in raw data to have duplicate data
+          where there is only a minor difference, for example two customer records may be identical, but one contains a suburb
+          name as part of the address and one does not. One needs removing.
+        • Initial Analysis where the quality and distribution of the data is determined.
+          This is done to determine if there is any bias or other problems in the data distribution
+        • Main analysis where statistical models are applied to answer some question, usually asked management
+
+
+
+[Big Data]
+
+        the amount of data available that an organisation can collect and analyse has been growing rapidly. The first reference to big data on
+        Gartner’s Hype Cycle of emerging technologies was in 2011 when it was referred to as ‘Big Data and Extreme Information Processing and Management’. 
+        As a term it grew out of data warehousing recognising the growth of storage needed to handle massive datasets some organisations were generating
+
+
+[Data in the Cloud]
+
+        •  Cloud computing is distributed computing where the application and data a user
+           may be working with is located somewhere on the internet.
+
+
+        •  The impact on database systems is you no longer have to worry about local storage issues because
+           you can purchase a data platform as a service in the cloud. It also
+           means whatever an organisations definition of big data is, there is a cost effective
+           way of storing and analysing that data. Although concerns have been raised about
+           security including backup and recovery of cloud services, they are probably better
+           than policies and practice in place at most small to medium sized businesses 
+
+
+
+[The Need for Speed]
+
+    The time taken has three components:
+       
+       • seek time
+            which is how long it takes the read/write head to move over the disk
+       
+       • rotational latency
+            basically the average time it takes the disk to rotate so the record
+            you want is actually under the read/write head.
+            ما أنت عارف يبرنس ان الديسك فيه ابره شغاله بتلف عشان تجبلك الداتا بتاعتك
+       
+       • Transfer rate Data then has to be moved from the disk to the processor—the data .
+
+
+    how to deal with this  ?
+
+    - The first is to move the entire database into memory
+
+    - The second is to use a different access strategy to that provided by the database management system
+
+
+[In-Memory Database]
+
+    Put the entere database in memory
+
+
+            - BUT NOTE -
+
+    a relational database is designed for data stored on disk and helps optimise the time taken to transfer data to memory.
+    This is no longer an issue as the data is already in memory meaning other ways of organising and accessing data can
+    be implemented
+
+
+
+[ NoSQL Database ]
+
+    واحده من اكبر مشاكل الداتا بيز بتاعتي انها كانت يا ولدي دايما بتحكم الموضوع في شكل اوبجيكت عشان اعرف احطك في 
+    Row and Colums ====> So can make record store in table 
+
+   - optimise for scalce كمان مش احسن حاجه في انها تعمل 
+     ودي مشكله كبيره جدا خصوصا لما ظهرت حاجه وي البيج داتا 
+     بعدين اصلا انا كنت بتستخدمها عشان اعرف اخلي الدنيا سهله لما اجي اتعامل مع الديسك 
+     دلوقتي الداتا كلها عندي في الميموري فا عايز طريقه مختلفه عشان اعرف اتعامل
+
+   - here is the form of the data which
+    people want to store, analyse and retrieve. Tweets from Twitter are data that do not
+    easily fit a relational or object oriented structure. Instead column based approaches
+    were a column is the smallest unit of storage or a document based approach where
+    data is denormalised can be applied
+    
