@@ -1,0 +1,292 @@
+
+- until now we still old way of storing with 0 , 1 or on & off may in future Quantum Computers has another opinion
+=> ORCAL: has datetype called BOLB (Binary Large Object) which is a variable-length string of bits up to 2,147,483,647 characters long.
+
+
+
+[Stroge Datebase]
+
+    two key elements exist in all common databases:
+
+        • the permanent storage of data , usually on disks
+        • the processing of data, usually carried on in the RAM of machine running the database
+
+        All of them must make you able to do the basic operation => CRUD Create / Read / Update / Delete
+
+[In-Memory Structures]
+
+    What ever improvment happens by the DISK HDD will still slower than Memory with hundreds times
+
+    • AS you know reading from disk is so slow and has high cost related to performance and that why DBMS always
+      try to keep date that they read as long as possible in Memory
+    
+    •  in-memory structure which holds copies of data read from disk is called the Database Buffer Cache.
+       it resides within an overall structure called the System Global Area, referred to as the [SGA]
+
+    
+
+[Server]
+
+  major task is to make sure the database is running OK.
+  If need be it can perform a recovery when the database starts up
+
+
+  [Tasks that server managed]
+
+
+    • Process Monitor -> looks after the instance’s processes, including user processes.
+      If, for example, a session is idle for too long, Process Monitor will kill the session to free up resources.
+     
+    • The Database Writer’s task -> as you can probably guess, is to make data changes
+      and inserts permanent by writing them down to the disks. Changes to data are actually made in
+      the Database Buffer. Thus changed, but not yet written to disk, the
+      buffer is described as a “dirty” buffer. Because of the bottleneck that disk operations
+      ده الاستاذ الي بيقعد يحنكش في الداتا فعليا هو الي حرفيا بيغيرها
+
+
+
+[Database Writer]
+
+  The Redo Log Writer manages the redo logs. Redo Logs are used to protect
+  against instance failure by storing information (known as change vectors) about
+  what changes have been made to the database. Using Redo logs it is possible to
+  reconstruct all the changes that have been made to the database since a backup by
+  replaying the changes onto the recovered database from the logs.
+
+  -- Note --
+
+  The redo log is a crucial component of a database management system that records changes made to the database.
+  It contains a record of all modifications, such as inserts, updates, and deletes,
+  performed on the database. If you want to revert the changes and restore the database to a previous state,
+  you can use the redo log to reverse the recorded modifications
+  and effectively roll back the database to its previous state.
+
+
+[CheckPoints]
+
+  The Checkpoint process is about regularly ensuring that the database is consistent.
+  It forces Database Writer to flush dirty buffers to disk so that the current
+  contents of the database are all in disks. At that point the System Change Number
+  (SCN) is incremented and that number is stored in the data files and the control files
+  This is used if Oracle needs to discover when the database was last
+  consistent and to discover inconsistent data files (perhaps because of disk corruption)
+  since any data file which does not have the current SCN in its header is not consistent.
+  This event is triggered when the redo log buffer is switched and when a hot back-up is taken.
+
+
+[Data Stroge]
+
+    the free space is kept in a data-block so that rows can expand if need-be. Of
+    course, too much free space means you are wasting HDD space. Too little means
+    you are more likely to need to extend a row to another data-block.
+    Once a data-block has insufficient free space to store an update, the row just has
+    to be split across two data-blocks. This is called chaining
+
+
+    - Row chaining 
+      when the contents of a row are bigger than the data-block size,
+      Oracle just has to use more than one data-block to store the data.
+      This also happens when an update is bigger than the free space left in the original
+
+
+[Row Chaining and Migration]
+
+  Sometimes, such as when the contents of a row are bigger than the data-block size,
+  Oracle just has to use more than one data-block to store the data. This also happens
+  when an update is bigger than the free space left in the original data-block.
+  The early part of the row will be stored in the first data-block; there will then be
+  a pointer to another data-block where more of the row is stored. This is known as
+  chaining. If this isn’t big enough, the chain can continue growing until the data is stored.
+  If a row grows too big to fit in a data-block, but can fit into another data-block
+  Oracle may migrate the row to a new data-block to eliminate the chaining cause by the update
+
+
+
+[Logical vs physical ]
+
+  -- Logical --
+
+   You can say that the logical representation of data in a database is like the shape 
+   or structure of the data when you ask the database management system (DBMS) to retrieve or manipulate it.
+   
+   When you interact with a DBMS, you use a language called SQL (Structured Query Language) 
+   to communicate your requests. The logical structure of the data, which includes tables, rows, and columns, 
+   helps the DBMS understand how the data is organized and how to retrieve or modify it based on your requests.
+
+
+
+  -- Physical --
+  
+  you can say that the physical representation of data in a database refers to how the data 
+  is actually represented and stored on the disk. It encompasses the specific file formats, disk layouts, 
+  and storage mechanisms used by the database management system (DBMS) to store and retrieve data.
+
+
+
+[TableSpace - Segments - Data Block ]
+
+  - Database =  [ts1 + ts2 + ts3 + ts4 + .............................]
+  - Tablespace 1
+    - Segment 1 (Table A)
+      - Data Block 1
+      - Data Block 2
+      - ...
+    - Segment 2 (Index on Table A)
+      - Data Block 1
+      - Data Block 2
+      - ...
+    - Segment 3 (Other objects)
+      - Data Block 1
+      - Data Block 2
+      - ...
+  - Tablespace 2
+    - Segment 4 (Table B)
+      - Data Block 1
+      - Data Block 2
+      - ...
+    - Segment 5 (Index on Table B)
+      - Data Block 1
+      - Data Block 2
+      - ...
+    - Segment 6 (Other objects)
+      - Data Block 1
+      - Data Block 2
+      - ...
+
+
+
+  In a relational database system, a tablespace, segment, 
+  and data block are key components that work together to organize and store data efficiently.
+
+  • Tablespace 
+    A tablespace is a logical storage container within a database. 
+    It serves as a grouping mechanism for related segments. 
+    Each tablespace is supported by one or more data files in the operating system. 
+    Tablespaces provide a way to manage and allocate storage space for various database objects, 
+    such as tables, indexes, and other data structures.
+
+  • Segment 
+    A segment is a logical storage structure within a tablespace. 
+    It represents a specific type of database object, such as a table, index, or partition. 
+    Segments are composed of one or more extents, which are contiguous blocks of data. 
+    Segments provide a way to allocate and manage space for individual database objects, 
+    allowing for efficient storage and retrieval.
+
+  • Data Block 
+    A data block is the smallest unit of storage in a database. 
+    It represents a fixed-size block of data that can store actual data, indexes, or other objects. 
+    Data blocks are used to store and retrieve data efficiently. 
+    They are grouped together to form segments and are managed at the tablespace level.
+
+  In summary, a tablespace acts as a logical container that holds segments, 
+  which are composed of data blocks. 
+  This hierarchical structure allows for the efficient organization and management of data in a relational database
+  system.
+
+
+--> Note <--
+
+  • the “current” status of the database will include a mix of data on a HDD and in dirty buffers
+  • last consistent that is when all the data changes were written to disk
+    it is the point just before the oldest dirty buffer in memory. قبل ما تعمل اش شخبطه في الداتا بيز تغير الدنيا
+
+
+  Let's say we have a database with a table called "Customers" and we perform the following operations:
+    1 - Insert a new customer record.
+    2 - Update the address of an existing customer.
+    3 - Delete a customer record.
+
+
+                                "REDO LOG "
+   ----------------------------------------------------------------------
+  |                                                                      |  
+  |   "Insert into Customers (ID, Name, Address) values                  |
+  |    (1, 'John Doe', '123 Main St')"                                   |
+  |                                                                      |
+  |    "Update Customers set Address = '456 Elm St' where ID = 1"        |
+  |                                                                      |
+  |                                                                      |
+  |    "Update Customers set Address = '456 Elm St' where ID = 1"        |
+  |                                                                      |
+  |                                                                      |
+  |----------------------------------------------------------------------|
+
+
+                        "  اكننا قاعدين علي القهوه Redo Log  قصة حبنا مع ال  "
+
+بص يبرنس دلوقتي عندنا مشكله كبيره جدا ان الاجهزه دماغها تعبانه ممكن في ثانيه تقولك لمواخذه الحاجات الي انت عملتها
+من شويه مش هقدر اسجلها وكل سنه وانت طيب ضاعت عليك طبعا احنا مش بنتكلم في حاجه انت عملها عشان تلعب فيها بشويه 
+كبير شغال لايف في شركه ولا في اي مصيبه System معفنه انت  و عبله صحبك لا يصحبي ممكن يكون Queries 
+حرفيا هتترفد فوري طب ايه الحل طيب ؟
+[REDO - LOG ] سهله ومش مستهله هنعمل حاجه لذيذه جدا اسمها   
+هنسجل ابوها ليه  ؟ transaction  بكل بسطاطه كل حاجه البشمهندس عبله هيعملها كا  
+عشان لو الدنيا خربت تاني اعرف ارجع الداتا بيز للحاله الصح الي المفروض تكون موجوده عليها 
+commitied or not commitied data any Change or transaction you did save it in this redo Log as above
+وقت ما يحصل مشكله انت عارف الي حصل ايه فا هتروح تنفذ الشخبطه الي موجوده في الملف ده وخلاص 
+
+ليه اصلا القصه الجميله دي كلها ؟
+
+  => the “current” status of the database will include a mix of data on a HDD and in dirty buffers
+  لان الداتا بتاعك مش كلها علي الديسك لا دي كل شويه يحصل عمليات تتدشمل الداتا
+
+
+  The default operation for Redo Logs is that they are circular, in other words,
+  data is written until the log is full, and then it keeps on writing over the previous data. 
+  The length of time data is stored for will clearly depend upon how
+  big the Redo Log file is, and how many transactions happen in any given period.
+
+  When an instance fails the process is that you go to the last back-up and
+  restore from it. You then “replay” the changes as stored in the Redo Log. If
+  those changes are not recorded for any period between the back-up and now,
+  you will only be able to run with the database as it was backed-up—potentially
+  forcing irate users to replicate the work they did over the missing days. If this
+  is likely to be a problem then you need to save the data in the Redo Log before it gets overwritten. 
+  This is called [archiving], and a back-up plus a fully --------- important ----------------
+  archived Redo Log means you can restore a database to any point in time you require.
+
+
+  [ UNDO ]
+
+  is the mechanism for allowing the user to issue the Rollback command—in other
+  words, to undo the changes they have made, and it does so by storing the old
+  data values. The other important task for Undo is to allow for multiple users to
+  be able to read the database in a read-consistent way. This means that, by using
+  the Undo data, snapshots of data as at a point in time can be created, meaning
+  that users are not blocked from accessing the data by other users who are making
+  changes.
+
+
+
+
+[ Distributed Databases ] خطرررررررررررررررررررررررررررررررررر
+
+  Imagine, however, that we work in an organisation with three offices: one in
+  Chennai (India), one in Perth (Australia), and one in Reykjavik (Iceland). 
+  Each collects data about its customers in their part of the world.
+  The company happens to be Icelandic, so the head office is in Reykjavik.
+  One solution in this case would be to have a single Server running in Reykjavik
+  and for the other offices to connect into that server in the normal client/server fashion. 
+  But what if the people in Chennai want to collect slightly different information
+  about their customers to people in the other offices? In that case, with a single server
+  system the schema would have to be made flexible enough to cope with the differences. 
+  And what if the office in Perth wants to add a column to one of the tables?
+  Changing schemas can cause problems, but the people in Perth may think it worth
+  the risk, whereas the others may not.
+  Distributed databases can get around these problems of data ownership by allowing each local office to maintain 
+  its own database using a local version of the
+  DBMS, whilst also running a Distributed DBMS (DDBMS) which, at a meta level,
+  allows some users to see the database as the sum of all three.
+  For clarity, we will here define a distributed database as:
+
+  " More than one logically interrelated database elements which are connected by a computer
+    network, and are typically in different geographic locations. "
+
+
+  
+
+  
+
+
+
+
+
