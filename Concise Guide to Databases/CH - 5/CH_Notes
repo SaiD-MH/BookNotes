@@ -1,0 +1,7 @@
+                                    [ RDBMS vs NO-SQL ]
+
+That's correct, Software. RDBMS (Relational Database Management Systems) are typically vertically scaled systems, meaning that they are designed to handle increased workload by adding more resources to a single server, such as increasing CPU power, memory, or storage capacity. Vertical scaling is limited by the capabilities of a single server.
+
+On the other hand, NoSQL (Not Only SQL) databases are often used in horizontally scaled systems. Horizontal scaling involves distributing the workload across multiple servers, allowing for increased capacity and performance by adding more servers to the system. NoSQL databases are designed to be highly scalable and can handle large amounts of data and high traffic loads by distributing the data across multiple servers.
+
+It's important to note that while RDBMS and NoSQL databases are often associated with vertical and horizontal scaling, respectively, there can be exceptions to this generalization. Some RDBMS systems can also support horizontal scaling through techniques like sharding, and some NoSQL databases can be vertically scaled to a certain extent. The choice between vertical and horizontal scaling depends on the specific requirements and characteristics of the system.
