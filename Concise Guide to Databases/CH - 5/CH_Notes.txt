@@ -1,0 +1,262 @@
+                                    [ RDBMS vs NO-SQL ]
+
+Software. RDBMS (Relational Database Management Systems) are typically vertically scaled systems, 
+meaning that they are designed to handle increased workload by adding more resources to a single server, 
+such as increasing CPU power, memory, or storage capacity. 
+Vertical scaling is limited by the capabilities of a single server.
+
+On the other hand, NoSQL (Not Only SQL) databases are often used in horizontally scaled systems. 
+Horizontal scaling involves distributing the workload across multiple servers, 
+allowing for increased capacity and performance by adding more servers to the system. 
+NoSQL databases are designed to be highly scalable and can handle large amounts of data 
+and high traffic loads by distributing the data across multiple servers.
+It's important to note that while RDBMS and NoSQL databases are often associated with 
+vertical and horizontal scaling, respectively, there can be exceptions to this generalization. 
+Some RDBMS systems can also support horizontal scaling through techniques like sharding, 
+and some NoSQL databases can be vertically scaled to a certain extent. 
+The choice between vertical and horizontal scaling depends on the specific requirements and characteristics of the system.
+
+
+Cattell (2010) provides a nice clear definition of horizontal scaling:
+The term 
+“horizontal scalability” means the ability to distribute both the data and the load of
+simple operations over many servers, with no RAM or disk shared among the servers "
+
+
+
+What NoSQL Mean ?
+
+    1 - “any database which doesn’t use SQL”
+
+
+                OR 
+
+
+    2 -  Another definition is that NoSQL is N.O.SQL and that the N.O. stands for Not Only
+
+
+
+    A database which does not store data using the precepts of the relational model and which
+    allows access to the data using query languages which do not follow the ISO 9075 standard
+    definition of SQL.
+
+
+
+        ACID test vs CAP Theorem 
+
+
+        [The consistent]
+
+            - in RDBMS -
+                as used in the ACID test means that the data that is stored in
+                the database has all rules or constraints applied to it. 
+                In other words, the data complies with all the business rules designed into the database.
+
+            - CAP Theorem -
+                The consistent as used in the CAP theorem means that all the data accessible
+                by clients, across all nodes, is the same. As we will see below, this is not always
+                the case in NoSQL databases. Often these databases do not have schemas and
+                whatever data validation rules there are have to be implemented at the client end
+
+
+        [Vailability] 
+        
+            refers to the ability of the database to serve data to clients. 
+            In general, the more redundant nodes a database has, the more available it will be since
+            anyone trying to gather data from a node which is “down” can get the data from
+            other nodes. The downside is that performance can suffer
+
+
+        [Partition Tolerance] 
+            refers to the ability of the database to find alternate routes
+            through the network to get at data from various nodes should there be breaks in
+            communications. As Gilbert and Lynch (2002) suggest tolerance means:
+                " No set of failures less than total network failure is allowed to cause the system to
+                respond incorrectly. "  -> طالما موقعتش كلها الداتا لازم توصل
+
+
+
+
+
+Type of NoSQL Database
+
+
+
+    Column-Based Approach
+
+       "Column-based databases are indeed well-suited for scenarios where fast access to non-volatile data is crucial. 
+        Unlike traditional row-based databases, which store data in a row-by-row fashion, 
+        column-based databases store data in a columnar format. 
+        This design allows for efficient data compression and retrieval, 
+        making them ideal for workloads that require quick access to specific columns or subsets of data. "
+
+       "In scenarios where speed is of utmost importance, such as real-time analytics or large-scale data processing, 
+        column-based databases offer several advantages. 
+        They can quickly scan and aggregate data within specific columns, 
+        enabling faster query execution times. Additionally, 
+        column-based databases often employ compression techniques that further enhance performance 
+        by reducing disk I/O and memory footprint. "
+
+        There are many relational databases which have optimisation techniques that
+        make this problem seem trivial. And yet, the question remains; if we are retrieving data from columns more 
+        frequently than looking at several attributes from a row
+        of data, why don’t we store the data in columns instead of rows?
+        And that is exactly what the column-based approach provides us. The data items
+        for each attribute are stored one after another. The read process is thus made very
+        simple and there are only start-toread and end-reading pointers to worry about and
+        no jumping around to different disk segments to jump over unwanted data
+
+                                ولكن خلي بالك الدنيا مش بامبي انا جنبك وانت جنبي 
+
+        In the type of system we are discussing the column oriented approach improves
+        read efficiency because there is no need for a row identifier, and packing similar
+        data together allows compression algorithms to reduce the volume of disk storage
+        required. Whilst this does allow for more rapid analysis of those column values, it
+        does mean that the reverse problem is true—if there is a need to create a record (or
+        row of data), it would have to be recreated by using positional information to look
+        up the other data items from columns. This would clearly be very inefficient.
+        A second slight issue is that best performance, in terms of compression, will
+        happen when similar values are adjacent to each other. If the data being recorded is
+        volatile and many inserts and updates occur, this efficiency will eventually be lost.
+        One insert could result in many rewrites as the data is shuffled to ensure similar
+        values are adjacent to each other                                
+    
+
+
+        So when would you choose to use a column-based approach ?
+        
+        Column based databases allow for rapid location and return of data from one particular
+        attribute. They are potentially very slow with writing however, since data may need to be
+        shuffled around to allow a new data item to be inserted. As a rough guide then, traditional
+        transactionally orientated databases will probably fair better in a RDBMS. Column based
+        will probably thrive in areas where speed of access to non-volatile data is important, 
+        for example in some Decision Support Applications. You only need to review marketing material 
+        from commercial vendors to see that business analytics is seen as the key market, and speed
+        of data access the main product differentiator.
+
+
+
+
+
+    Document-Based Approach
+
+
+
+        Many of us are taught that well structured, normalised data is the only form of good
+        database design when we first encounter large scale database systems. Indeed this is
+        true for many systems. However, even in RDBMS design there is sometimes a case
+        for denormalising the data for performance.
+        The document approach takes this even further. It is schemaless, meaning there
+
+        can be no “correct” design. The application developer using MongoDB, 
+        for example, is therefore responsible for data quality issues, 
+        rather than relying on the centralised constraints typical of RDBMS.
+
+
+
+
+        Many of the documentCentric databases dont allow data to be locked in the way that is required for atomic transactions in RDBMS systems. 
+        Since locking is a significant performance overhead this enables them to claim performance advantages over traditional
+        databases. The downside, of course, is that some applications absolutely require secure
+        transactional locking mechanisms. Document-oriented is probably not the right vehicle for
+        highly structured data in a transaction dependant environment, as occurs in many OLTP systems.
+        The performance advantages that accrue from document-centric implementations mean that
+        they are often used when there are large volumes of semi-structured data, such as webpage
+        content, comment storage, or event logging. They may well also support sharding (spreading a table’s rows) 
+        of data across multiple nodes, again as a performance device.
+
+
+
+
+        Certainly! Here are a few examples to illustrate the use of document-centric databases:
+
+            1. Content Management Systems (CMS): 
+               Document-centric databases are commonly used in CMS platforms to store and manage webpage content. 
+               Each webpage can be represented as a document, containing attributes like title, body text, author, 
+               and metadata. The flexibility of document-centric databases allows for easy storage and retrieval of webpage content.
+
+            2. Social Media Platforms: 
+                
+                DocumentCentric databases are well suited for storing user-generated content in social media platforms.
+                For example, comments on posts, user profiles, and messages can be stored as documents.
+                The dynamic and varying structure of user-generated content makes document-centric databases a suitable choice.
+
+            3. Event Logging: 
+                
+                Document-centric databases are often used for storing event logs, such as system logs or application logs. 
+                Each log entry can be represented as a document, containing information 
+                like timestamp, event type, source, and additional details. 
+                Document-centric databases can efficiently handle large volumes of log data and provide fast querying capabilities.
+
+            4. E-commerce Platforms: 
+                
+                E-commerce platforms often deal with diverse product data, including attributes like name, description,
+                price, and specifications. Document-centric databases can store product information as documents, 
+                allowing for flexible schema and easy retrieval of product data.
+
+
+
+
+        While document-centric databases have their advantages, there are certain cases where this approach may not be the best fit. 
+        Here are a few scenarios where document-centric databases may not be suitable:
+
+            1. Highly Structured Data: 
+                If your data has a highly structured and rigid schema, such as financial transactions or 
+                complex relational data, a document-centric database may not be the most appropriate choice. 
+                Relational databases, like traditional RDBMS systems, are better suited for handling structured data
+                with strict relationships and dependencies.
+            
+            2. Strong Transactional Requirements: 
+                If your application requires strong transactional locking mechanisms to ensure data consistency and 
+                integrity, document-centric databases may not provide the necessary level of transactional support. 
+                In such cases, traditional relational databases with ACID (Atomicity, Consistency, Isolation, 
+                Durability) properties are typically preferred.
+            
+            3. Complex Joins and Aggregations: 
+                Document-centric databases are optimized for retrieving individual documents or 
+                subsets of data efficiently. However, if your application heavily relies on complex join operations 
+                or aggregations across multiple documents or collections, 
+                a relational database may be a better choice. Relational databases excel 
+                at handling complex queries involving multiple tables and relationships.
+            
+            4. Compliance and Regulatory Requirements: 
+                In certain industries, such as finance or healthcare, strict compliance and regulatory requirements 
+                may necessitate the use of traditional relational databases. These databases often have built-in 
+                features for data security, access control, and auditing, which may be crucial for meeting regulatory standards.
+            
+        
+
+
+        Examples : 
+
+            CouchDB, which, like MongoDB, is open source. Both databases
+            provide APIs for many programming languages, although they have their own inbuilt client environments as well.
+            They are both written with distributed data handling at their core. They both support the idea of Sharding, 
+            [Sharding] => where data is spread across a number of nodes in what is
+            also sometimes called “horizontal partitioning” to allow for greater scalability
+
+
+
+        
+        Indeed, besides MongoDB, there are other document databases available, such as CouchDB. 
+        Both MongoDB and CouchDB are open-source databases that provide APIs for multiple programming languages 
+        and have their own client environments.
+        One common feature of both MongoDB and CouchDB is their focus on distributed data handling. 
+        They are designed to handle data across multiple nodes, allowing for scalability and improved performance. 
+        They support the concept of sharding, which involves spreading data across multiple nodes 
+        or partitions to distribute the workload and increase the database's capacity.
+        It's important to note that while the examples discussed here are stand-alone, 
+        the architecture of these databases is often intended to run in a multi-node environment. 
+        This means that in a production setup, the databases would be deployed across multiple nodes 
+        to achieve scalability and fault tolerance.
+        Sharding in document databases follows a "Shared Nothing" approach, where each node has 
+        its own instance of the database. This allows for parallel processing when searching for data, 
+        resulting in high performance. However, there is a risk that if one node fails, 
+        the entire database (the sum of the shards) could become invalid. 
+        To mitigate this risk, these databases employ replication techniques to provide redundancy. 
+        Replication ensures that all shards are replicated and available on multiple nodes, ensuring data availability
+        even in the event of node failures.
+        To maintain high availability and consistency, these databases require robust replication processes to ensure 
+        that all shards are always accessible and up-to-date.
+        Overall, both MongoDB and CouchDB, along with other document databases, offer distributed data handling, 
+        support sharding for scalability, and employ replication techniques to ensure data redundancy and availability.
