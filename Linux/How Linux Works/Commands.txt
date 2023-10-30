@@ -1,0 +1,409 @@
+
+
+how know your current working Directory ?
+
+	[command] pwd
+
+how to list all files inside WD ?
+
+	[command] ls      => just show visable files
+	[command] ls -al  => show all files visable and hidden 
+	[command] ls -l  => show all files  + more details
+
+
+how to change your current WD and navigate ?
+	[command] cd     | refer to ' change directory'
+
+	note => 
+
+	  - cd / ==> known as cd root move us to very base of our file system
+	  - if you are in anywhere in the system when you make cd ~ teilda 
+	  	you move to home/user ex => home/mohamed 
+	  	or just --> cd  take you back to your home folder home/user
+
+how to create an empty file ?
+	
+	[command] touch file.txt 
+
+how to show content of file ?
+	
+	[command] cat file.txt   => cat known as concatination
+
+how to make a folder or directory ?
+	
+	[command] mkdir newfolder just in your place you are
+	[command] mkdir -p Linux/play/backend/learnLinux
+
+how to move files / Folders ?
+
+	[command] mv whatToCopy whereToCopy
+
+			ex => mv file.txt linuxStuff    -> readed in that way move file.txt to folder linuxStuff 
+
+how to remove file ?
+
+	[command] rm file.txt
+
+how to remove folder / Directory ?
+
+	[command] rmdir folderName
+
+****Note that 
+
+	- rm can't remove directory 
+	- rmdir can't also remove directory has a content it just all it can remove empty directory
+    
+So !  
+
+how to remove directory has content ?
+
+[command] rm -r directory path / Name
+[command] rm -rf directory path / Name
+
+
+***[important] how to get info about command ? => man
+
+[command] man word
+ex => 	  man rm 
+
+how to close the terminal ?
+
+[command] ctrl + D
+
+how to get info about whats happenning ?
+
+[command] who => for short info
+[command] w   => for good info
+
+
+look like task manager in windows show Processes
+[command] top
+
+network state 
+[command] netstat -tupln
+
+
+how to copy Files ?
+[command] cp file.txt path  => copy what to where 
+
+
+
+search for a pattern in some files
+
+[grep] grep "pattern" path [ abs path start from root or relative to your current directory]
+
+
+
+To see the differences between two text files, use diff:
+
+diff file1 file2
+
+
+If you see a file and are unsure of its format, try using the file command to see if the system can guess:
+file file
+
+
+how to search on a file in your system ????
+
+
+using [find] command 
+
+										
+find Dir_to_search_in -name '....' -type d / f   -print
+
+say you in desktop has folder 'Folder' inside it mohamed.txt
+
+ex => find ./folder/ -name 'mohamed.txt' -type f 
+ex => find ./folder/ -name '*.txt' -type f 
+ex => find ./folder/ -name '*mo*' -type f 
+
+
+[head & tail]
+
+you have file has tooooo many text you can look at part of it like or using 
+
+file.txt 100 line
+
+[head]  head -5  file.txt // see me first 5 lines
+[tail]  tail -5  file.txt // see me last 5 lines
+
+
+sort your file line based  => default alpha
+
+desktop/foler
+
+sort desktop/folder/file.txt ;   
+
+sort desktop/folder/file.txt -n ;
+sort desktop/folder/file.txt -r ; reverse the order
+
+
+[passwd] how to change your password?
+
+	passwd
+
+
+[Environment variable and shell variable]
+
+
+ "shell variables"
+
+	name=mohamed
+	echo $name
+
+ "Environment variables"
+
+ 	how to show them ?
+
+ 	1 - printenv name
+ 	2 - echo $name
+
+ 	overall u can acess it using $ -> $varName
+
+
+ 	how to make enviroment variable for user ?
+
+ 	cd home/user
+ 	nano .bashrc 
+ 	export varName = X
+ 	save and exit
+ 	update the .bashrc file using [source .bashrc]
+
+
+ 	if you want it globle for all user 
+ 	
+ 	do the same but 
+ 	cd / 'root'
+ 	cd etc
+ 	nano environment
+ 	export varName = X
+ 	source environment
+
+
+ 	delete the vaiable
+
+ 	unset varName
+
+
+[ CTRL-B ]  Move the cursor left
+[ CTRL-F ]  Move the cursor right
+
+[ CTRL-P ]  View the previous command (or move the cursor up)
+[ CTRL-N ]  View the next command (or move the cursor down)
+
+[ CTRL-A ]  Move the cursor to the beginning of the line
+[ CTRL-E ]  Move the cursor to the end of the line
+
+[ CTRL-W ]  Erase the preceding word
+[ CTRL-U ]  Erase from cursor to beginning of line
+
+[ CTRL-K ]  Erase from cursor to end of line
+[ CTRL-Y ]  Paste erased text (for example, from CTRL-U)
+
+
+
+help about commands
+
+	1 -  info commmandName
+    2 -  man commmandName
+    3 -  commmandName --help / -h / --h
+
+
+
+To send the standard output of a command to the standard input of another command, use the pipe character [|] 
+(|). To see how this works, try these two commands:
+
+	ex =>   ls | grep "linux"                    cat file.txt | wc -l       wc "word count"
+
+
+
+
+how to handel output errors to files
+
+
+$ ls /fffffffff > output 2> error
+     
+    ID(1) for output
+    ID(2) for error
+$ ls /fffffffff 1> output 2> error
+
+you can merge them together in one file 
+	
+	$ ls /fffffffff > output 2>&1
+
+
+
+-----> PROCESSES THAT YOU RUN <-----------
+[ps]  list them
+
+[ ps x ] 	Show all of your running processes.
+[ ps ax] 	Show all processes on the system, not just the ones you own.
+[ ps u ] 	Include more detailed information on processes.
+[ ps w ] 	Show full command names, not just what fits on one line.
+
+			OR
+
+ps options PID  => ps u 2014  | ps u $$ ($$ var mean current shell)
+
+
+
+HOW TO KILL Process ????? 
+
+kill PID # terminate
+kill -STOP PID # still in memory not terminated or ended
+kill -CONT PID # continue
+pkill P_NAME  ex=> pkill firefox
+
+
+
+
+clear vs CTRL + L
+
+	clear make it clear litrally as you open it no privois dealing  with terminal
+
+	ctrl + l => look like scrolling
+
+
+
+*note instead of try to re-enter the same command again and again you can just search about it
+in your command typed history using 
+			
+			CTRL + R
+
+and you can exit this mode using [ESC]
+
+
+
+
+	----------------------------------	File Permission    ------------------------------------------ 
+
+
+	r 	Means that the file is readable.
+	w 	Means that the file is writable.
+	x 	Means that the file is executable (you can run it as a program).
+	- 	Means nothing.
+
+	know the groups you are in 
+
+	[command] groups
+
+
+	How to add permission ?
+
+		$ chmod g+r file
+		$ chmod o+r file
+
+	how to remove permission ?
+
+		$ chmod go-r file
+
+	you can change (user & group  & other ) in one command 
+
+	chmod go + w file
+	chmod ugo - w file
+
+
+
+	you can write the permission on numbers (8 base ) 0 to 7
+
+
+	Mode  						Meaning	                 				Used For
+	
+	644 			user: read/write; group , other: 					read files
+	600 			user: read/write; group , other: 					none files
+	755 			user: read/write/execute; group, other: 			read/execute directories, programs
+	700 			user: read/write/execute; group, other: 			none directories, programs
+	711 			user: read/write/execute; group, other: 			execute directories
+
+		 r w s/x
+	1 -> 0 0 1 
+	4 -> 1 0 0
+	5 -> 1 0 1
+	7 -> 1 1 1
+
+	The numbers you provided represent file permissions in a Unix-like operating system. Each digit in the number corresponds to a specific set of permissions for different user groups. Here's what each digit represents:
+
+- The first digit (6) represents the permissions for the owner/user.
+- The second digit (4) represents the permissions for the group.
+- The third digit (4) represents the permissions for others.
+
+Now let's break down the meaning of each digit:
+
+1. 644: The owner/user has read and write permissions, while the group and others have read permissions only. This is typically used for regular files that can be read by everyone but only modified by the owner.
+
+2. 600: The owner/user has read and write permissions, while the group and others have no permissions. This is commonly used for sensitive files that should only be accessed by the owner.
+
+3. 755: The owner/user has read, write, and execute permissions, while the group and others have read and execute permissions. This is often used for directories and programs that need to be accessed and executed by multiple users.
+
+4. 700: The owner/user has read, write, and execute permissions, while the group and others have no permissions. This is commonly used for directories and programs that should only be accessed and executed by the owner.
+
+5. 711: The owner/user has read, write, and execute permissions, while the group has execute permissions, and others have no permissions. This is typically used for directories that need to be accessed and executed by the owner and executed by the group.
+
+These permission settings help control access to files and directories, ensuring that only authorized users can perform specific actions.
+
+
+
+
+----------------------------------------------------------------------------- 
+
+	Linux Symbolic Links  | Look Like shourtCuts in windows
+
+	!!!! carfull when i open it i'm actually in the origanl dir anychange reflected there in 
+		 orginal One
+
+
+	
+		 how to make Symbolic Links 
+
+		 [command] ln -s target linkName
+
+		 	ex => 
+
+		 			ln -s ./Desktop/test linkerShourtcut
+
+	lrwxrwxrwx 1 ruser users 11 Feb 27 13:52 somedir -> /home/origdir
+
+
+
+how to compress the file in linux  ****************** Files only
+
+	gzip file.txt   [zip]
+	gunzip file.txt.gz [un zip]
+
+
+how to archiev dir and folders and files inside archieve ?
+	
+
+	tar -cvf archieve.tar dirPath
+
+	-c option to create the archieve 
+	-v (verbose) option show in terminal info about things that go inside the archieve
+
+
+
+how to unarchieve and extract files
+
+	[conmmand] tar -xvf archieve.tar 
+
+	you can get just some files not all of them 
+
+		[command] tar -xvf archieve.tar mohamed.txt
+
+
+	you can get info first about content of tar using this option 
+
+
+		=> Table-of-Contents Mode -t
+
+			[command] tar -tvf arch1.tar 
+
+
+	can found file that archieved then compressed how to deal with that ?
+
+		1 - decompress 
+		2 - un-archieve 
+
+		gunzip file.tar.gz 
+		tar -xvf file.tar
+
+		[or] in one command -> zcat file.tar.gz | tar xvf -

@@ -1,0 +1,62 @@
+
+
+1 Terabyte = 1024 Gigabytes
+1 Petabyte = 1024 Terabytes
+1 Exabyte = 1024 Petabytes
+1 Zettabyte = 1024 Exabytes
+
+
+
+    Every day, we create 2.5 quintillion bytes of data—so much that 90 % of the
+    data in the world today has been created in the last two years alone. This data
+    comes from everywhere: sensors used to gather climate information, posts to
+    social media sites, digital pictures and videos, purchase transaction records,
+    and cell phone GPS signals to name a few. This data is big data.
+
+    
+
+
+    The four V's that describe big data are:
+
+
+
+        [Volume]
+
+            As we have seen, the most obvious characteristic of Big Data is that it is BIG.
+            It may even be so big that an organisation needs to look for new tools and techniques to store and 
+            query it.  This volume therefore is likely to be the biggest
+            challenge for data professionals in the near future. It may result in the need for
+            scalable distributed storage and querying, and many will turn to Cloud computing to meet those needs.
+
+
+        [Velocity]
+
+
+            Describes the speed at which data is generated and needs to be processed. Big data often involves real-time or 
+            near-real-time data streams that require quick analysis and decision-making.
+
+
+
+
+        [Variety]       
+
+            Represents the diverse types and formats of data that are part of big data. 
+            It includes structured data (e.g., databases), unstructured data (e.g., text, images, videos), 
+            and semi-structured data (e.g., XML, JSON). 
+            Big data systems must be capable of handling this variety of data.
+
+
+        [Veracity] الداتا تمام فبا موثوقيه مش فيك
+
+            Refers to the quality and reliability of the data. 
+            Big data can include data from various sources, 
+            and ensuring its accuracy and trustworthiness is crucial for making informed decisions. 
+            Veracity involves dealing with data inconsistencies, errors, and biases that may be present in the data.
+
+
+
+
+        In general, then, big data analytics is about exploring large volumes of data looking for trends, 
+        anomalies, previously unknown correlations and obscure patterns
+        which can be used to an organisation’s advantage by evidencing 
+        some sort of prediction upon which better business decisions are taken
