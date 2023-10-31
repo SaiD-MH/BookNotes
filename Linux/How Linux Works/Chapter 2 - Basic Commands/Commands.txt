@@ -407,3 +407,40 @@ how to unarchieve and extract files
 		tar -xvf file.tar
 
 		[or] in one command -> zcat file.tar.gz | tar xvf -
+
+
+
+
+how to open the terminal as Root ?
+
+	[command] su
+
+
+how to run command as root ?
+
+	[command] sudo command
+
+
+	To clarify, the `/etc/sudoers` file should not be directly edited with regular commands. It is recommended to use the `visudo` command, which opens the file in a safe manner and performs syntax checks to prevent errors. However, if you are looking for examples of entries that can be added to the `/etc/sudoers` file, here are a few:
+
+					1. Allowing a user to run any command as root without a password prompt:
+					   ```
+					   username ALL=(ALL) NOPASSWD: ALL
+					   ```
+					
+					2. Allowing a user to run specific commands as root without a password prompt:
+					   ```
+					   username ALL=(ALL) NOPASSWD: /bin/ls, /usr/bin/apt-get
+					   ```
+					
+					3. Allowing a group to run specific commands as root without a password prompt:
+					   ```
+					   %groupname ALL=(ALL) NOPASSWD: /sbin/reboot, /sbin/shutdown
+					   ```
+					
+					4. Restricting a user to run specific commands as root with a password prompt:
+					   ```
+					   username ALL=(ALL) /usr/bin/apt-get update, /usr/bin/apt-get install
+   ```
+
+Remember to replace "username" with the actual username and "groupname" with the actual group name. Additionally, exercise caution when modifying the `/etc/sudoers` file and ensure that the syntax is correct to avoid any errors.
