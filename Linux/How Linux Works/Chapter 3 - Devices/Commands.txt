@@ -1,0 +1,41 @@
+
+
+----------------------------------------------------------[ CH 3 Commands ] -----------------------------------------------
+
+
+[dd] "data duplicator" | "disk destroyer"
+	
+	 used for copying and converting files
+	 
+	 [used to] 	create disk images
+	 			clone disks 
+	 			perform low-level data copying
+	 			manipulate data streams
+
+	dd [OPTION]...
+
+		(1)
+			Copying data: You can use dd to copy data from one file or device to another. For example, to copy the contents of one file to another, you can use a command like:
+
+			dd if=input-file of=output-file
+
+		(2)
+			Creating disk images: dd can be used to create disk or partition images. This is useful for backup and recovery purposes. For instance, to create an image of a disk or partition, you can use a command like:
+
+			dd if=/dev/sdX of=image-file
+
+		(3)
+
+			Cloning disks: You can use dd to clone one disk to another, which is useful for duplicating the contents of one storage device onto another. For example:
+
+			dd if=/dev/sdX of=/dev/sdY
+
+		(4)
+
+			Zeroing or erasing data: dd can be used to overwrite data with zeros or other patterns to securely erase it. For example:
+
+			dd if=/dev/zero of=/dev/sdX
+
+
+
+

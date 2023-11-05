@@ -16,3 +16,8 @@
 		
 		meaning dealing with terminal to R and W
 
+[SCSI Small computer system interface]
+	
+	SCSI stands for Small Computer System Interface. It is a set of standards that define a parallel interface for connecting and communicating between computers and peripheral devices. SCSI was initially developed as a high-speed interface for connecting hard disk drives, but it has since been expanded to support a wide range of devices, including tape drives, optical drives, scanners, printers, and more.
+	SCSI provides a standardized method for data transfer, command sets, and device management. It allows multiple devices to 	be connected to a single SCSI bus, with each device having a unique identifier. This enables efficient and simultaneous communication between the computer and multiple devices.
+	Over time, SCSI has evolved, and newer versions such as SCSI-2, SCSI-3, and Ultra SCSI have been introduced, offering faster data transfer rates and improved functionality. However, with the advent of Serial ATA (SATA) and Serial Attached SCSI (SAS), the use of parallel SCSI has become less common in modern systems.

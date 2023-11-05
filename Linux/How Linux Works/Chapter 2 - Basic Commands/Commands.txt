@@ -1,4 +1,9 @@
 
+how to know if that command installed in your system
+	
+	which commandName
+	which ls
+	which cat
 
 how know your current working Directory ?
 

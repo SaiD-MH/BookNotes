@@ -106,3 +106,33 @@ So the Solution that linux introduce is that [sysfs]
 	 /sys/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/block/sda => used to view information and manage the device.
 
 	 
+[ Device Name Summary ]
+
+	1 - Hard Disks: /dev/sd*
+
+		Most hard disks attached to current Linux systems correspond to device names with an sd prefix, such as 
+		/dev/sda, /dev/sdb, and so on. These devices represent entire disks; the kernel makes separate device files, 
+		such as /dev/sda1 and /dev/sda2, for the partitions on a disk.
+
+	2 -  CD and DVD Drives: /dev/sr*
+
+
+		CD and DVD drives are typically recognized as SCSI devices and are assigned device files under the /dev/sr* naming convention. These device files, such as /dev/sr0, /dev/sr1, and so on, represent the optical drives and are used for reading data from discs.
+		It's important to note that the /dev/sr* devices are read-only, meaning you can only read data from the discs using these device files. If you need to perform write or rewrite operations on optical devices, you would use the "generic" SCSI devices, which are represented by device files under the /dev/sg* naming convention, such as /dev/sg0.
+
+	3 - PATA Hard Disks: /dev/hd*
+
+		In older versions of the Linux kernel and with older hardware, PATA (Parallel ATA) hard disks are typically recognized as block devices with device files under the /dev/hd* naming convention. The device files /dev/hda, /dev/hdb, /dev/hdc, and /dev/hdd are commonly used to represent the master and slave devices on interfaces 0 and 1.
+		It's worth noting that in some cases, a SATA (Serial ATA) drive may be recognized as one of these /dev/hd* devices. This indicates that the SATA drive is running in a compatibility mode, which can limit its performance. To fully utilize the capabilities of a SATA drive, it is recommended to switch the SATA controller to its native mode in the BIOS settings.
+		Please keep in mind that the specific device file names may vary depending on the Linux distribution and the configuration of your system. You can use commands like "lsblk" or "ls /dev/hd*" to list the available PATA hard disks and their corresponding device files on your system.
+
+	4 - Terminals: /dev/tty*, /dev/pts/*, and /dev/tty
+
+		In Linux, terminals are devices used for communication between a user process and an I/O device, typically for text output to a terminal screen. There are several types of terminal devices represented by different device files.
+		(1)
+			/dev/tty*: The /dev/tty* devices represent physical terminals or virtual consoles. For example, /dev/tty1 represents the first virtual console. These devices are used for direct input and output to the terminal.
+		(2)
+			/dev/pts/: The /dev/pts/ devices are pseudoterminal devices. They emulate the I/O features of real terminals but are actually connected to software processes rather than physical hardware. For example, /dev/pts/0 represents the first pseudoterminal device. These devices are commonly used for terminal emulators or remote shell sessions.
+		(3)
+			/dev/tty: The /dev/tty device represents the controlling terminal of the current process. If a program is reading from or writing to a terminal, /dev/tty is a synonym for that terminal. It allows a process to interact with the terminal even if it is not directly attached to it.
+			
