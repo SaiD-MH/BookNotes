@@ -1,0 +1,18 @@
+[interface] 
+
+
+	referring to the way the kernel exposes device configuration information to users and other software components
+
+
+[User space] 
+		
+		includes all user-level applications and programs, such as web browsers, text editors, media players, and other software that you interact with directly.
+
+[udev] 
+		
+		User-Space Device
+
+[standard I/O ]
+		
+		meaning dealing with terminal to R and W
+

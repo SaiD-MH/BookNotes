@@ -1,0 +1,108 @@
+ the kernel 
+ 			presents many of the device I/O  interfaces to user processes as files so easy to play with it
+ 			and this files  sometimes called [device nodes]
+
+
+for device the file mode (permissions) will start with one of these chars
+
+	
+	- b Block 
+
+		 Programs access data from a block device in fixed chunks
+		 Disks can be easily split up into blocks of data
+		 total size is fixed and easy to index, 
+		 processes have random access to any block in the device with the help of the kernel
+
+	- c Character
+
+		Character devices work with data streams.
+		You can only read characters from or write characters to character devices
+		Character devices don’t have a size
+
+			character devices don't have a "size," I meant that character devices don't have a fixed, predefined size like regular files or block devices (e.g., hard drives or partitions).
+			In the context of regular files, you can typically determine their size in terms of the number of bytes or characters they contain. For example, you can see that a text file is 1,000 bytes in size.
+			Character devices, on the other hand, represent devices like keyboards, terminals, or sound cards, and they don't have a fixed size in terms of bytes or characters. Instead, they are used for streaming data, and they deal with data in a more dynamic manner. Data can be sent and received continuously, without having a predetermined size. For instance, when you type on a keyboard, characters are sent one by one without any predefined size.
+
+			So, it's not that character devices lack a size altogether, but rather that their "size" isn't a fixed and meaningful attribute in the same way it is for regular files or block devices. The data sent and received by character devices is more about the stream of characters or data being transferred in real-time rather than a static size.
+
+
+	- p Pipe
+
+			Same like the Chars devices but with another process at the other end of the I/O stream instead of a 
+			kernel driver.
+
+	- s Socket
+
+			Sockets are indeed special-purpose interfaces used for interprocess communication, but they are different from device files, such as character devices or block devices. Sockets are used for communication between processes and can be found outside the /dev directory. Here's a brief overview of sockets:
+
+		1	Interprocess Communication: Sockets provide a mechanism for processes to communicate with each other over a 		network or within the same system (Unix domain sockets). They are used to send and receive data between 			applications running on different machines or on the same machine.
+
+		2	Network Sockets: Network sockets are used for communication between processes over a network, typically using 		protocols like TCP (Transmission Control Protocol) and UDP (User Datagram Protocol). They are created and 			managed by networking libraries and are not device files.
+
+
+
+brw-rw---- 1 root disk 8, 1 		Sep 6 08:37 sda1
+crw-rw-rw- 1 root root 1, 3 		Sep 6 08:37 null
+prw-r--r-- 1 root root 0 			Mar 3 19:17 fdata
+srw-rw-rw- 1 root root 0 			Dec 18 07:43 log
+
+
+the numbers before the date above named [the major and minor device numbers]
+
+	[The major device number]
+
+		identifies the general category or type of device. It tells the kernel what kind of device it is dealing with. 
+
+	[The Minor Device Number]
+
+		 specifies the particular device within the general category identified by the major device number. It distinguishes between individual partitions, interfaces, or units within the same device type. For example, the minor device number can be used to distinguish between different partitions on the same hard drive, like sda1, sda2, and sda3.
+
+	- the major say it's disk and minor say what disk exactly you mean 
+
+
+the problem with /dev directory ?
+	
+	even it's very simple veru strightforward there is a problem 
+
+		The name of the device in /dev tells you a little about the device but not a lot
+		
+		Another problem is that the kernel assigns devices in the order in which they are found, so a device may have 
+		a different name between reboots.
+
+
+			 the way device names are assigned in Unix-like operating systems, particularly in the /dev directory. Let me break it down:
+
+			Device Naming: In Unix-like systems, devices, both hardware and virtual devices, are represented as files in the /dev 	directory. These device files have names that allow user processes and system utilities to access and interact with the devices.
+
+			Order of Discovery: When the operating system boots, it initializes and detects various hardware devices and loads the necessary drivers. The order in which the devices are discovered or detected can be somewhat arbitrary. For example, during the boot process, the kernel may detect hard drives, network cards, and other hardware devices.
+
+			Device Name Assignment: The kernel assigns device names based on the order in which devices are detected. For example, the first hard drive detected might be assigned the name /dev/sda, the second hard drive might be /dev/sdb, and so on. The same principle applies to other devices, such as network interfaces (e.g., /dev/eth0, /dev/eth1).
+
+			Inconsistency Between Reboots: The issue with this naming scheme is that the order of device detection can vary between reboots. Depending on factors like the order in which hardware devices initialize or the timing of device detection, a device may be assigned a different name each time the system boots.
+
+
+
+
+
+
+So the Solution that linux introduce is that [sysfs] 
+	
+	[sysfs]
+
+			 provide a uniform view for attached devices based on their actual hardware attributes, the Linux kernel 
+			 offers the sysfs interface through a system of files and directories
+
+
+	 /dev/sda
+
+	 	vs 
+
+	 /sys/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/0:0:0:0/block/sda
+
+	 they have diffrent purposes
+
+	 /dev/sad => so that user processes can use the device 
+
+	 /sys/devices/pci0000:00/0000:00:1f.2/host0/target0:0:0/block/sda => used to view information and manage the device.
+
+	 
