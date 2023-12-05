@@ -1,0 +1,30 @@
+
+
+
+
+
+
+	<form method="post" action="">
+
+
+	int action=""
+
+		* the default is that assume you are in your wep app
+		that's mean it's now in
+			action lOOk like that =>  action="myApp/"
+			but you see look like that => action=""
+
+
+			so if you say at action => action="/s"
+
+			/  => mean the server name (ROOT)
+
+			so if you say "/" at the beginning you must say the full path
+			look like that => action="/myapp/form.html"
+
+
+			[OR]
+
+				as default is that your app who is opened look like that /myapp/
+				just mention what you want to access
+
