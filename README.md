@@ -30,13 +30,13 @@ Feel free to explore the summaries and use them as a quick reference or study gu
    - Author: Kathy Sierra, Bert Bates, Trisha Gee
    - [Summary of Head First Java](Java/Head%20First%20Java/)
 
-2. **Title of Book 2**
-   - Author: [Author's Name]
-   - Summary: [Link to Summary]
+2.  **Head First Java**
+   - Author: Kathy Sierra, Bert Bates, Trisha Gee
+   - [Summary of Head First Java](Java/Head%20First%20Java/)
+3. **Data Structures & Algorithms in Java - Robert Lafore**
+   - Author: Robert Lafore
+   - [Summary of Data Structures & Algorithms in Java - Robert Lafore ](Java/Structures%20&%20Algorithms%20in%20Java%20-%20Robert%20Lafore/)
 
-3. **Title of Book 3**
-   - Author: [Author's Name]
-   - Summary: [Link to Summary]
 
 ... (Add more books as needed)
 
