@@ -28,7 +28,7 @@ Feel free to explore the summaries and use them as a quick reference or study gu
 
 1. **Head First Java**
    - Author: Kathy Sierra, Bert Bates, Trisha Gee
-   - [Summary of Head First Java](Java/"Head First Java")
+   - [Summary of Head First Java](Java/"Head First Java"/)
 
 2. **Title of Book 2**
    - Author: [Author's Name]
