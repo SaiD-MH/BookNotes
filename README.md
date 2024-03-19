@@ -41,6 +41,13 @@ Feel free to explore the summaries and use them as a quick reference or study gu
 4. **Head First Object-Oriented Analysis and Design**
    - Author:  Brett McLaughlin, Gary Pollice, David West
    - [Summary of Head First Object-Oriented Analysis and Design ](Object%20Oriented%20Programming/Head%20First%20Object-Oriented%20Analysis%20and%20Design)
+     
+5. **Head First Servlet & JSP**
+   - Author:  Bryan Basham, Kathy Sierra, Bert Bates
+   - [Summary of Head First Servlet & JSP ](Spring%20%26%20Spring%20Boot/Head%20First%20Servlet%20%26%20JSP)
+6. **How Linux Works, What Every Superuser Should Know 3rd Edition**
+   - Author: Brian Ward
+   - [Summary of How Linux Works, What Every Superuser Should Know ](Linux/How%20Linux%20Works)
 
 ## Contributing
 
