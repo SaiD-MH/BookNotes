@@ -35,7 +35,11 @@ Feel free to explore the summaries and use them as a quick reference or study gu
    - [Summary of Data Structures & Algorithms in Java - Robert Lafore ](Java/Data%20Structures%20&%20Algorithms%20in%20Java%20-%20Robert%20Lafore/)
 
 
-... (Add more books as needed)
+3. **Concise Guide to Databases **
+   - Author:  Peter Lake
+   - [Summary of Concise Guide to Databases ](Databases/Concise%20Guide%20to%20Databases/)
+
+
 
 ## Contributing
 
